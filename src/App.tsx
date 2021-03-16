@@ -53,6 +53,23 @@ function App() {
         return data;
     }
 
+    async function transferEth() {
+        const transferParams = {
+            vaultId: "34",
+            to: {
+                starkKey: "0x5fa3383597691ea9d827a79e1a4f0f7949435ced18ca9619de8ab97e661020",
+                vaultId: "21",
+            },
+            quantum: "1",
+            amount: "2154549703648910716",
+            nonce: "1",
+            expirationTimestamp: "438953",
+            // condition: "",
+        };
+        const signedTransfer = await portis.starkwareProvider.transferEth( transferParams);
+        console.log(`signedTransfer: ${signedTransfer}`);
+    }
+
     return (
         <div className="App">
             <header className="App-header">
@@ -61,6 +78,7 @@ function App() {
                 <p>Stark Key: {state.starkKey}</p>
                 <a onClick={portis.showPortis}>Show Portis</a>
                 <a onClick={register}>Register</a>
+                <a onClick={transferEth}>Transfer Ethereum</a>
             </header>
         </div>
     );
